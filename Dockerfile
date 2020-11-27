@@ -15,8 +15,11 @@ RUN apt update -y && \
     && rm -rf /var/lib/apt/lists/*
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.5/bin/linux/amd64/kubectl \
     && chmod a+x kubectl && cp kubectl /usr/local/bin/kubectl
-COPY . .
+COPY tests/requirements.txt ./tests/requirements.txt
+COPY requirements.txt .
 RUN /usr/bin/python3 -m pip install pip -U && /usr/bin/python3 -m pip install -r tests/requirements.txt && python3 -m pip install -r requirements.txt && update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
 # Some tools like yamllint need this
 ENV LANG=C.UTF-8
+
+COPY . .

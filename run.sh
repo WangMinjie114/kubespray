@@ -27,8 +27,6 @@ rm -f ${INVENTORY_PATH}/env.yml ${INVENTORY_PATH}/inventory
 cp -f ${CONFIG_PATH}/env.yml ${INVENTORY_PATH}/env.yml
 cp -f ${CONFIG_PATH}/inventory ${INVENTORY_PATH}/inventory
 
-chmod 0400 ${CONFIG_PATH}/ssh_cert*/*
-
 case $input in
   install-gpu )
 # TODO: add gpu device install

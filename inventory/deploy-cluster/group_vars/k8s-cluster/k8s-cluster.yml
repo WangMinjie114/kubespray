@@ -24,7 +24,7 @@ kube_version: v1.19.3
 
 # cargo domain config
 cargo_domain: "devops.cargo.io"
-cargo_object: "kubesrpay_test"
+cargo_object: "cluster-deploy"
 
 # gcr and kubernetes image repo define
 gcr_image_repo: "{{ cargo_domain }}/{{ cargo_object }}"
