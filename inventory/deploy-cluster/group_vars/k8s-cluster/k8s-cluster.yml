@@ -243,7 +243,7 @@ default_kubelet_config_dir: "{{ kube_config_dir }}/dynamic_kubelet_dir"
 dynamic_kubelet_configuration_dir: "{{ kubelet_config_dir | default(default_kubelet_config_dir) }}"
 
 # pod security policy (RBAC must be enabled either by having 'RBAC' in authorization_modes or kubeadm enabled)
-podsecuritypolicy_enabled: false
+podsecuritypolicy_enabled: true
 
 # Custom PodSecurityPolicySpec for restricted policy
 # podsecuritypolicy_restricted_spec: {}
@@ -341,8 +341,7 @@ kube_apiserver_enable_admission_plugins:
   - NodeRestriction
   - DenyEscalatingExec
   - AlwaysPullImages
-#  - PodSecurityPolicy
-#  - EventRateLimit
+  - EventRateLimit
 
 ### Set k8s component bind host address
 kube_apiserver_bind_address: "{{ ip | default(fallback_ips[inventory_hostname]) }}"
@@ -354,4 +353,9 @@ kubernetes_audit: true
 
 ### Apiserver encryption provider config
 kube_encrypt_secret_data: true
+
+### CIS modify
+kube_controller_terminated_pod_gc_threshold: 1000
+kube_api_runtime_config: ["extensions/v1beta1/networkpolicies","batch/v2alpha1"]
+audit_log_maxbackups: 10
 
